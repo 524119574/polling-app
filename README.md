@@ -13,4 +13,13 @@ As we can see from the Instagram reference site that the instagram access token 
 The first optinion is not sufficient, since it is in sandbox mode so we can not access the real world data.
 The second optinion is not sufficient for our purpose as well, since it dosen't grant the permission to like other's post. We can only view other's post.
 
+After searching on the Github, we can easily find several repo that provide us an interface in node.js:
+1. [Instagram Private Api](https://github.com/huttarichard/instagram-private-api)
+2. [Instagram Node](https://github.com/totemstech/instagram-node)
+
+The second option required us to have a access token and we need to publish our APP under the Instagram review which makes the process super cumbersome. We will need to register a client in the Instagram website, using the sandbox mode first which means we cannot access any real world data. In order to access the real world data, we will have to publish our app which require submit many files including the screencast and detailed explanation of the function of the app. A more detailed explanation can be found [here](https://www.instagram.com/developer/review/) Thus we shall abort this option.
+
+So, in our project, we decided to use the first one since we can access the real world data much more easily.
+
+
 To be continued...
