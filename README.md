@@ -21,5 +21,7 @@ The second option required us to have a access token and we need to publish our 
 
 So, in our project, we decided to use the first one since we can access the real world data much more easily.
 
+Other useful link:
+This is an [article](https://medium.freecodecamp.com/i-wanted-to-see-how-far-i-could-push-myself-creatively-so-i-redesigned-instagram-1ff99f28fa8b) on how to redesign the facebook app, maybe I could do just that.
 
 To be continued...
