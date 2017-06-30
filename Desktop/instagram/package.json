@@ -1,0 +1,17 @@
+{
+  "name": "instagram-auto-liker",
+  "version": "1.0.0",
+  "description": "This is a script to do some autoliking in the instagram",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonard Ge",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "instagram-id-to-url-segment": "0.0.0",
+    "instagram-private-api": "^0.6.0",
+    "underscore": "^1.8.3"
+  }
+}
