@@ -6,15 +6,7 @@ var storage = new Client.CookieFileStorage(__dirname + '/cookies/leonard.ge.json
 var	convert = require('instagram-id-to-url-segment');
 var	urlSegmentToInstagramId = convert.urlSegmentToInstagramId;
 var session;
-//equals to the first part of id
 
-// Client.Session.create(device, storage, 'leonard.ge', 'gw@524119574')
-// 	.then(function(sessionInstance) {
-// 		session = sessionInstance;
-// 	})
-// 	.then(function() {
-
-// 	})
 var date = new Date();
 var likeRecord = {
 	'date': date.getDay(),
