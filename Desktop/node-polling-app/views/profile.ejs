@@ -1,0 +1,65 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> My Poll</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <ul>
+            <%if (poll === null) {window.location.reload()}%>
+            <% for(var i=0; i<poll.length; i++) {%>
+               <li><span class='choice-name'><%= poll[i].question %></span> <button class='btn btn-primary' id=<%=poll[i].id%> type='button' href='/profile'>Delete</button></li>
+            <% } %>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+    $('button').click(function(e) {
+        e.preventDefault();
+        var currentUrl = window.location.href;
+        if (currentUrl[currentUrl.length-1]!=="/") {
+            currentUrl = currentUrl + "/";
+        }
+        $.ajax({
+            url: currentUrl + 'delete',
+            type: 'post',
+            data: {
+                id: $(this).attr('id')
+            },
+            success: function() {
+                console.log('success!');
+            }
+        })
+
+    })
+});
+</script>
+
+</html>

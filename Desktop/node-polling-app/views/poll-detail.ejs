@@ -1,0 +1,82 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><%=poll.question%></h1>
+    </div>
+    
+    <ul>
+    <% for(var i=0; i<poll.choices.length; i++) {%>
+       <li><span class='choice-name'><%= poll.choices[i].choiceName %></span> <span class='choice-count'><%= poll.choices[i].choiceCount %></span> <button class='btn btn-primary' id=<%=poll.choices[i].choiceId%> type='button'>Vote</button></li>
+    <% } %>
+    </ul>
+
+
+    <div id="chart_div"></div>
+</div>
+
+</body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    var pollContent = <%-JSON.stringify(poll);-%>;// very important!!!
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+    function drawBasic() {
+        var table = [['choice', 'count']];
+        for (var i = 0; i < pollContent.choices.length; i++) {
+            var choice = pollContent.choices[i];
+            table.push([choice.choiceName, choice.choiceCount]);
+        }
+        console.log(table);
+        var data = google.visualization.arrayToDataTable(table);
+        var option = {
+            title: 'Polling Chart'
+        }
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, option);
+    }    
+    console.log(pollContent);
+
+
+
+
+    $('button').click(function(e) {
+        e.preventDefault();
+        // update the database!!!
+        var currentUrl = window.location.href;
+        if (currentUrl[currentUrl.length-1]!=="/") {
+            currentUrl = currentUrl + "/";
+        }
+        $.ajax({
+            url: currentUrl + 'vote',
+            type: 'post',
+            data: {
+                id: $(this).attr('id')
+            }
+        })
+        var count = +$(this).siblings('.choice-count').text();
+        $(this).siblings('.choice-count').text(count+1);
+        $('button').prop('disabled', true);
+
+    })
+});
+</script>
+</html>
